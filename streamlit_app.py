@@ -41,4 +41,5 @@ if ingredients_list:
         session.sql(my_insert_stmt).collect()
         st.success('Your smoothe has been ordered!', icon="✅")
 smoothiefroot_response = requests.get("https://api.nal.usda.gov/fdc/v1/foods/search?api_key=b3zrMMJ1evTmkmyeJifjqg971D5McVWohHjqIx6p&query=watermelon&SRFoodCategory=Fruits%20and%20Fruit%20Juices")
-st.text(smoothiefroot_response)
+# st.text(smoothiefroot_response)
+sf_df = st.dataframe(data=smoothiefroot_response.json(),use_container_width=true)
