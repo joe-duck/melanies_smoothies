@@ -43,14 +43,14 @@ if ingredients_list:
 smoothiefroot_response = requests.get("https://api.nal.usda.gov/fdc/v1/foods/search?api_key=b3zrMMJ1evTmkmyeJifjqg971D5McVWohHjqIx6p&query=watermelon%20raw&SRFoodCategory=Fruits%20and%20Fruit%20Juices")
 # st.text(smoothiefroot_response)
 food = smoothiefroot_response.json()
-sf_df = st.dataframe(data=food,use_container_width=True)
+response_json = smoothiefroot_response.json()
+sf_df = st.dataframe(data=response_json["foods"][0]["foodNutrients"],use_container_width=True)
 # st.json(smoothiefroot_response.json())
 
-response_json = smoothiefroot_response.json()
 
 # Display the first food item
 if "foods" in response_json and len(response_json["foods"]) > 0:
     st.subheader("First Food Item (from USDA API)")
-    st.json(response_json["foods"][0])
+    st.json(response_json["foods"][0]["foodNutrients"])
 else:
     st.warning("No foods found in the API response.")
