@@ -42,5 +42,5 @@ if ingredients_list:
         st.success('Your smoothe has been ordered!', icon="✅")
 smoothiefroot_response = requests.get("https://api.nal.usda.gov/fdc/v1/foods/search?api_key=b3zrMMJ1evTmkmyeJifjqg971D5McVWohHjqIx6p&query=watermelon%20raw&SRFoodCategory=Fruits%20and%20Fruit%20Juices")
 # st.text(smoothiefroot_response)
-sf_df = st.dataframe(data=smoothiefroot_response.json(),use_container_width=True)
+sf_df = st.dataframe(data=smoothiefroot_response.json().foods,use_container_width=True)
 st.json(smoothiefroot_response.json())
