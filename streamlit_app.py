@@ -40,7 +40,7 @@ if ingredients_list:
     if time_to_insert:
         session.sql(my_insert_stmt).collect()
         st.success('Your smoothe has been ordered!', icon="✅")
-smoothiefroot_response = requests.get("https://api.nal.usda.gov/fdc/v1/foods/search?api_key=b3zrMMJ1evTmkmyeJifjqg971D5McVWohHjqIx6p&query=watermelon&SRFoodCategory=Fruits%20and%20Fruit%20Juices")
+smoothiefroot_response = requests.get("https://api.nal.usda.gov/fdc/v1/foods/search?api_key=b3zrMMJ1evTmkmyeJifjqg971D5McVWohHjqIx6p&query=watermelon%20raw&SRFoodCategory=Fruits%20and%20Fruit%20Juices")
 # st.text(smoothiefroot_response)
 sf_df = st.dataframe(data=smoothiefroot_response.json(),use_container_width=True)
 st.json(smoothiefroot_response.json())
