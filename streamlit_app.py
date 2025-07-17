@@ -40,5 +40,5 @@ if ingredients_list:
     if time_to_insert:
         session.sql(my_insert_stmt).collect()
         st.success('Your smoothe has been ordered!', icon="✅")
-smoothiefroot_response = requests.get("https://fdc.nal.usda.gov/fdc-app.html#/?query=banana")
+smoothiefroot_response = requests.get("https://fdc.nal.usda.gov/food-search?type=SR%20Legacy&query=watermelon&SRFoodCategory=Fruits%20and%20Fruit%20Juices")
 st.text(smoothiefroot_response)
