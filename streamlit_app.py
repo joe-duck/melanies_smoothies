@@ -37,13 +37,14 @@ if ingredients_list:
       # st.text(smoothiefroot_response)
       food = smoothiefroot_response.json()
       response_json = smoothiefroot_response.json()
-      sf_df = st.dataframe(data=response_json["foods"][0]["foodNutrients"],use_container_width=True)
       # st.json(smoothiefroot_response.json())
 
 
       # Display the first food item
       if "foods" in response_json and len(response_json["foods"]) > 0:
-          st.subheader(fruit_chosen + 'Nutrition Information')
+          st.subheader(fruit_chosen.upper() + ' Nutrition Information')
+          sf_df = st.dataframe(data=response_json["foods"][0]["foodNutrients"],use_container_width=True)
+
           # st.json(response_json["foods"][0]["foodNutrients"])
       else:
           st.warning("No foods found in the API response.")
