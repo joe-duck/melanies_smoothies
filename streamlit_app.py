@@ -32,20 +32,21 @@ if ingredients_list:
     #         ingredients_string += fruit_chosen 
     st.write(ingredients_string)
     
-    smoothiefroot_response = requests.get("https://api.nal.usda.gov/fdc/v1/foods/search?api_key=b3zrMMJ1evTmkmyeJifjqg971D5McVWohHjqIx6p&query=watermelon%20raw&SRFoodCategory=Fruits%20and%20Fruit%20Juices")
-    # st.text(smoothiefroot_response)
-    food = smoothiefroot_response.json()
-    response_json = smoothiefroot_response.json()
-    sf_df = st.dataframe(data=response_json["foods"][0]["foodNutrients"],use_container_width=True)
-    # st.json(smoothiefroot_response.json())
+    for fruit_chosen in ingredients_list:
+      smoothiefroot_response = requests.get("https://api.nal.usda.gov/fdc/v1/foods/search?api_key=b3zrMMJ1evTmkmyeJifjqg971D5McVWohHjqIx6p&query="+fruit_chosen+"%20raw&SRFoodCategory=Fruits%20and%20Fruit%20Juices")
+      # st.text(smoothiefroot_response)
+      food = smoothiefroot_response.json()
+      response_json = smoothiefroot_response.json()
+      sf_df = st.dataframe(data=response_json["foods"][0]["foodNutrients"],use_container_width=True)
+      # st.json(smoothiefroot_response.json())
 
 
-    # Display the first food item
-    if "foods" in response_json and len(response_json["foods"]) > 0:
-        st.subheader("First Food Item (from USDA API)")
-        st.json(response_json["foods"][0]["foodNutrients"])
-    else:
-        st.warning("No foods found in the API response.")
+      # Display the first food item
+      if "foods" in response_json and len(response_json["foods"]) > 0:
+          st.subheader(fruit_chosen + 'Nutrition Information')
+          # st.json(response_json["foods"][0]["foodNutrients"])
+      else:
+          st.warning("No foods found in the API response.")
 
     
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients,name_on_order)
