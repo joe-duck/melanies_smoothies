@@ -37,7 +37,7 @@ if ingredients_list:
     for fruit_chosen in ingredients_list:
       search_on = pd_df.loc[pd_df['FRUIT_NAME'] == fruit_chosen, 'SEARCH_ON'].iloc[0]
       st.write('The search value for ' , fruit_chosen, ' is ' , search_on, '.')
-      smoothiefroot_response = requests.get("https://api.nal.usda.gov/fdc/v1/foods/search?api_key=b3zrMMJ1evTmkmyeJifjqg971D5McVWohHjqIx6p&query="+fruit_chosen+"%20raw&SRFoodCategory=Fruits%20and%20Fruit%20Juices")
+      smoothiefroot_response = requests.get("https://api.nal.usda.gov/fdc/v1/foods/search?api_key=b3zrMMJ1evTmkmyeJifjqg971D5McVWohHjqIx6p&query="+search_on+"%20raw&SRFoodCategory=Fruits%20and%20Fruit%20Juices")
       # st.text(smoothiefroot_response)
       food = smoothiefroot_response.json()
       response_json = smoothiefroot_response.json()
